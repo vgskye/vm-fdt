@@ -359,9 +359,9 @@ impl FdtWriter {
         // The unit adddress part of the node name, if present, is not fully validated
         // since the exact requirements depend on the bus mapping.
         // https://devicetree-specification.readthedocs.io/en/stable/devicetree-basics.html#node-name-requirements
-        if !node_name_valid(name) {
-            return Err(Error::InvalidNodeName);
-        }
+        // if !node_name_valid(name) {
+        //     return Err(Error::InvalidNodeName);
+        // }
         self.append_u32(FDT_BEGIN_NODE);
         self.data.extend(name_cstr.to_bytes_with_nul());
         self.align(4);
@@ -422,9 +422,9 @@ impl FdtWriter {
 
         let name_cstr = CString::new(name).map_err(|_| Error::InvalidString)?;
 
-        if !property_name_valid(name) {
-            return Err(Error::InvalidPropertyName);
-        }
+        // if !property_name_valid(name) {
+        //     return Err(Error::InvalidPropertyName);
+        // }
 
         let len = val
             .len()
